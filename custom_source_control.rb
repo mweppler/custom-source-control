@@ -5,8 +5,32 @@ require 'openssl'
 
 class CustomSourceControl
 
+  def checkout(snapshot = nil)
+    manifest_hash = ''
+    File.open(File.join('.esc', snapshot), 'r') do |file|
+      file.readlines.each do |entry|
+        manifest_hash = $1 if entry =~ /Snapshot Manifest: (\w{40})/
+      end
+    end
+
+    entries = []
+    File.open(File.join('.esc', manifest_hash), 'r') do |file|
+      file.readlines.each do |entry|
+        entry =~ /(.*?) => (.*?) \(new\)\n?/
+        entries << { :hash => $1, :pathname => $2 } if $1
+      end
+    end
+    entries.each do |entry|
+      copy_entry_to_working_directory entry
+    end
+  end
+
   def copy_entry_to_repository(manifest_entry)
     FileUtils.cp(manifest_entry[:pathname], File.join('.esc', manifest_entry[:hash]), { :preserve => true })
+  end
+
+  def copy_entry_to_working_directory(manifest_entry)
+    FileUtils.cp(File.join('.esc', manifest_entry[:hash]), manifest_entry[:pathname], { :preserve => true })
   end
 
   def copy_manifest_files_to_repository
@@ -149,7 +173,7 @@ class CustomSourceControl
     File.open(File.join('.esc', '__metadata__'), 'w') do |file|
       file.puts "Snapshot Manifest: #{manifest_hash}"
       file.puts "Snapshot Parent:   #{(head_contents.empty?) ? 'root' : head_contents}"
-      file.puts "Snapshot Taken:    #{Time.now}"
+      file.puts "Snapshot Taken:    #{'2014-03-07 23:59:59 -0800' || Time.now}"
     end
   end
 end
@@ -191,7 +215,7 @@ describe CustomSourceControl do
     end
 
     it 'gets a list of files in the current working directory' do
-      @csc.cwd_files.must_equal ['custom_source_control.rb', 'test_file_1.txt', 'test_file_2.txt']
+      @csc.cwd_files.must_equal ['test_file_1.txt', 'test_file_2.txt']
     end
 
     it 'creates a file hash for all files in the current working directory' do
@@ -199,8 +223,7 @@ describe CustomSourceControl do
         'test_file_1.txt' => 'bb4d8995cfa843effc83d6ddcea1a8351c09497f',
         'test_file_2.txt' => '5d3140359919315ea06e3755cdc81860e9d7c556'
       }
-      expected_hashes = @csc.cwd_hashes.keep_if { |key, value| key == 'test_file_1.txt' || key == 'test_file_2.txt' }
-      expected_hashes.must_equal actual_hashes
+      @csc.cwd_hashes.must_equal actual_hashes
     end
 
     it 'gets a list of files in the current working directory' do
@@ -211,14 +234,14 @@ describe CustomSourceControl do
 
     it 'returns a list of new and existing files' do
       deltas = @csc.deltas
-      deltas[:new].keep_if { |key, value| key == 'test_file_1.txt' || key == 'test_file_2.txt' }
       deltas[:new].must_equal ['test_file_1.txt', 'test_file_2.txt']
       deltas[:existing].must_equal []
     end
 
     it 'adds entries to the manifest file' do
       expected_content = %Q{5d3140359919315ea06e3755cdc81860e9d7c556 => test_file_2.txt (new)\nbb4d8995cfa843effc83d6ddcea1a8351c09497f => test_file_1.txt (new)}
-      @csc.manifest_contents.gsub!(/.*? => custom_source_control\.rb \(new\)\n?/, '').chomp.must_equal expected_content
+      manifest_contents = @csc.manifest_contents
+      manifest_contents.chomp.must_equal expected_content
     end
 
     it 'copies files listed in the manifest to the repository' do
@@ -239,6 +262,36 @@ describe CustomSourceControl do
     it 'updates HEAD to the latest snapshot' do
       metadata_hash = @csc.hash_for_file File.join('.esc', '__metadata__')
       @csc.head_contents.must_equal metadata_hash
+    end
+  end
+
+  describe 'when we checkout a previous snapshot' do
+    after do
+      File.open('test_file_2.txt', 'w') do |file|
+        file.write "this is test_file_2.text\n"
+      end
+      File.delete('test_file_3.txt')
+    end
+
+    before do
+      @csc.snapshot
+
+      # make some edits
+      File.open('test_file_3.txt', 'w') do |file|
+        file.write "this is test_file_3.text\n"
+      end
+      File.open('test_file_2.txt', 'a') do |file|
+        file.write "this is an update to test_file_2.text\n"
+      end
+
+      # take our second snapshot
+      @csc.snapshot
+    end
+
+    it 'copies files from the manifest into the current working directory' do
+      @csc.checkout '485ac882b4e89e929584acdfed522499f0a45464'
+      restored_hash = @csc.hash_for_file 'test_file_2.txt'
+      restored_hash.must_equal '5d3140359919315ea06e3755cdc81860e9d7c556'
     end
   end
 end
