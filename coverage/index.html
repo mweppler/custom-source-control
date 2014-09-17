@@ -1,0 +1,1825 @@
+<html>
+  <head>
+    <title>Custom Coverage</title>
+    <style>
+      .empty{background-color:#fff;}
+      .hit{background-color:#cdf2cd;}
+      .miss{background-color:#f7cfcf;}
+      .never{background-color:#efefef;}
+    </style>
+  </head>
+  <body style="width:960px;margin: 0 auto;padding:25px 0;">
+    <h1 style="width:100%;text-align:center;">Custom Coverage</h1><hr />
+    <h2 style="text-align:center;">/Users/mattweppler/developer/projects/custom-source-control/lib/custom_source_control.rb</h2>
+    <h3 style="text-align:center;">Coverage: 74.24%</h3>
+    <table style="width:100%;border:1px solid #000">
+      <tr>
+        <th>Total Lines</th>
+        <th>Relevant Lines</th>
+        <th>Irrelevant Lines</th>
+        <th>Covered Lines</th>
+        <th>Missed Lines</th>
+      </tr>
+      <tr>
+        <td style="text-align:center;">224</td>
+        <td style="text-align:center;">132</td>
+        <td style="text-align:center;">92</td>
+        <td style="text-align:center;">98</td>
+        <td style="text-align:center;">34</td>
+      </tr>
+    </table>
+    <table style="width:100%;border:1px solid #000">
+                  <tr class="never" >
+        <th>
+          <a name="line1">1</a>
+        </th>
+        <td>
+          <pre>#!/usr/bin/env ruby</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line2">2</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line3">3</a>
+        </th>
+        <td>
+          <pre>require 'fileutils'</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line4">4</a>
+        </th>
+        <td>
+          <pre>require 'openssl'</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line5">5</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line6">6</a>
+        </th>
+        <td>
+          <pre>class CustomSourceControl</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line7">7</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line8">8</a>
+        </th>
+        <td>
+          <pre>  ['manifest', 'metadata'].each do |method|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line9">9</a>
+        </th>
+        <td>
+          <pre>    define_method("hash_and_copy_#{method}") do</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="26">
+        <th>
+          <a name="line10">10</a>
+        </th>
+        <td>
+          <pre>      file = File.join('.esc', "__#{method}__")</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="26">
+        <th>
+          <a name="line11">11</a>
+        </th>
+        <td>
+          <pre>      hash = hash_for_file(file)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="26">
+        <th>
+          <a name="line12">12</a>
+        </th>
+        <td>
+          <pre>      FileUtils.cp(file, File.join('.esc', hash))</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="26">
+        <th>
+          <a name="line13">13</a>
+        </th>
+        <td>
+          <pre>      hash</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line14">14</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line15">15</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line16">16</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line17">17</a>
+        </th>
+        <td>
+          <pre>  ['__manifest__', '__metadata__', 'HEAD'].each do |ctl_file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="3">
+        <th>
+          <a name="line18">18</a>
+        </th>
+        <td>
+          <pre>    define_method("#{ctl_file.downcase.gsub('_', '')}_exists?") do</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="3">
+        <th>
+          <a name="line19">19</a>
+        </th>
+        <td>
+          <pre>      File.exists? File.join('.esc', ctl_file)</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line20">20</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line21">21</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line22">22</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line23">23</a>
+        </th>
+        <td>
+          <pre>  def checkout(snapshot = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line24">24</a>
+        </th>
+        <td>
+          <pre>    manifest_hash = ''</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line25">25</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', snapshot), 'r') do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line26">26</a>
+        </th>
+        <td>
+          <pre>      file.readlines.each do |entry|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="3">
+        <th>
+          <a name="line27">27</a>
+        </th>
+        <td>
+          <pre>        manifest_hash = $1 if entry =~ /Snapshot Manifest: (\w{40})/</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line28">28</a>
+        </th>
+        <td>
+          <pre>      end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line29">29</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line30">30</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line31">31</a>
+        </th>
+        <td>
+          <pre>    entries = []</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line32">32</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', manifest_hash), 'r') do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line33">33</a>
+        </th>
+        <td>
+          <pre>      file.readlines.each do |entry|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line34">34</a>
+        </th>
+        <td>
+          <pre>        entry =~ /(.*?) => (.*?) \(new\)\n?/</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line35">35</a>
+        </th>
+        <td>
+          <pre>        entries << { :hash => $1, :pathname => $2 } if $1</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line36">36</a>
+        </th>
+        <td>
+          <pre>      end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line37">37</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line38">38</a>
+        </th>
+        <td>
+          <pre>    entries.each do |entry|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line39">39</a>
+        </th>
+        <td>
+          <pre>      copy_entry_to_working_directory entry</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line40">40</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line41">41</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line42">42</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line43">43</a>
+        </th>
+        <td>
+          <pre>  def copy_entry_to_repository(manifest_entry)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="27">
+        <th>
+          <a name="line44">44</a>
+        </th>
+        <td>
+          <pre>    FileUtils.cp(manifest_entry[:pathname], File.join('.esc', manifest_entry[:hash]), { :preserve => true })</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line45">45</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line46">46</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line47">47</a>
+        </th>
+        <td>
+          <pre>  def copy_entry_to_working_directory(manifest_entry)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line48">48</a>
+        </th>
+        <td>
+          <pre>    FileUtils.cp(File.join('.esc', manifest_entry[:hash]), manifest_entry[:pathname], { :preserve => true })</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line49">49</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line50">50</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line51">51</a>
+        </th>
+        <td>
+          <pre>  def copy_manifest_files_to_repository</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line52">52</a>
+        </th>
+        <td>
+          <pre>    entries = []</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line53">53</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', '__manifest__'), 'r') do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line54">54</a>
+        </th>
+        <td>
+          <pre>      file.readlines.each do |entry|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="27">
+        <th>
+          <a name="line55">55</a>
+        </th>
+        <td>
+          <pre>        entry =~ /(.*?) => (.*?) \(new\)\n?/</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="27">
+        <th>
+          <a name="line56">56</a>
+        </th>
+        <td>
+          <pre>        entries << { :hash => $1, :pathname => $2 } if $1</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line57">57</a>
+        </th>
+        <td>
+          <pre>      end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line58">58</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line59">59</a>
+        </th>
+        <td>
+          <pre>    entries.each do |entry|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="27">
+        <th>
+          <a name="line60">60</a>
+        </th>
+        <td>
+          <pre>      copy_entry_to_repository entry</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line61">61</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line62">62</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line63">63</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line64">64</a>
+        </th>
+        <td>
+          <pre>  def cwd_files</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="16">
+        <th>
+          <a name="line65">65</a>
+        </th>
+        <td>
+          <pre>    all_files_wildcard = File.join '**', '*'</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="16">
+        <th>
+          <a name="line66">66</a>
+        </th>
+        <td>
+          <pre>    Dir.glob(all_files_wildcard)</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line67">67</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line68">68</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line69">69</a>
+        </th>
+        <td>
+          <pre>  def cwd_hashes</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="46">
+        <th>
+          <a name="line70">70</a>
+        </th>
+        <td>
+          <pre>    cwd_files.inject({}) { |hash, file| hash[file] = hash_for_file(file); hash }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line71">71</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line72">72</a>
+        </th>
+        <td>
+          <pre>  alias_method :refactor_cwd_hashes, :cwd_hashes</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line73">73</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line74">74</a>
+        </th>
+        <td>
+          <pre>  def initial_cwd_hashes</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line75">75</a>
+        </th>
+        <td>
+          <pre>    sha1 = OpenSSL::Digest::SHA1.new</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line76">76</a>
+        </th>
+        <td>
+          <pre>    hashes = {}</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line77">77</a>
+        </th>
+        <td>
+          <pre>    cwd_files.each do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line78">78</a>
+        </th>
+        <td>
+          <pre>      hashes[file] = sha1.hexdigest(File.read(file))</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line79">79</a>
+        </th>
+        <td>
+          <pre>      sha1.reset</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line80">80</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line81">81</a>
+        </th>
+        <td>
+          <pre>    hashes</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line82">82</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line83">83</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line84">84</a>
+        </th>
+        <td>
+          <pre>  def deltas</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="14">
+        <th>
+          <a name="line85">85</a>
+        </th>
+        <td>
+          <pre>    new, existing = [], []</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="14">
+        <th>
+          <a name="line86">86</a>
+        </th>
+        <td>
+          <pre>    cwd_hashes.each do |key, value|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="29">
+        <th>
+          <a name="line87">87</a>
+        </th>
+        <td>
+          <pre>      if repository_file_list.include? key</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line88">88</a>
+        </th>
+        <td>
+          <pre>        existing << key</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line89">89</a>
+        </th>
+        <td>
+          <pre>      else</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="29">
+        <th>
+          <a name="line90">90</a>
+        </th>
+        <td>
+          <pre>        new << key</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line91">91</a>
+        </th>
+        <td>
+          <pre>      end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line92">92</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="14">
+        <th>
+          <a name="line93">93</a>
+        </th>
+        <td>
+          <pre>    { :new => new, :existing => existing }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line94">94</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line95">95</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line96">96</a>
+        </th>
+        <td>
+          <pre>  def hash_for_file(file = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="89">
+        <th>
+          <a name="line97">97</a>
+        </th>
+        <td>
+          <pre>    sha1 = OpenSSL::Digest::SHA1.new</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="89">
+        <th>
+          <a name="line98">98</a>
+        </th>
+        <td>
+          <pre>    sha1.hexdigest(File.read(file))</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line99">99</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line100">100</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line101">101</a>
+        </th>
+        <td>
+          <pre>  def head_contents</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="32">
+        <th>
+          <a name="line102">102</a>
+        </th>
+        <td>
+          <pre>    File.open('.esc/HEAD', 'r') { |f| f.read }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line103">103</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line104">104</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line105">105</a>
+        </th>
+        <td>
+          <pre>  def initialize_repository</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="14">
+        <th>
+          <a name="line106">106</a>
+        </th>
+        <td>
+          <pre>    Dir.mkdir '.esc'</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="14">
+        <th>
+          <a name="line107">107</a>
+        </th>
+        <td>
+          <pre>    File.new(File.join('.esc', 'HEAD'), 'w')</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line108">108</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line109">109</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line110">110</a>
+        </th>
+        <td>
+          <pre>  def manifest_contents(manifest = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line111">111</a>
+        </th>
+        <td>
+          <pre>    manifest ||= '__manifest__'</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line112">112</a>
+        </th>
+        <td>
+          <pre>    File.open(".esc/#{manifest}", 'r') { |f| f.read }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line113">113</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line114">114</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line115">115</a>
+        </th>
+        <td>
+          <pre>  def repository_exists?</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line116">116</a>
+        </th>
+        <td>
+          <pre>    Dir.exists? '.esc'</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line117">117</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line118">118</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line119">119</a>
+        </th>
+        <td>
+          <pre>  def repository_file_exists?(filename = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line120">120</a>
+        </th>
+        <td>
+          <pre>    File.exists? File.join('.esc', filename)</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line121">121</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line122">122</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line123">123</a>
+        </th>
+        <td>
+          <pre>  def repository_file_list</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="33">
+        <th>
+          <a name="line124">124</a>
+        </th>
+        <td>
+          <pre>    all_files_wildcard = File.join '.esc', '*'</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="120">
+        <th>
+          <a name="line125">125</a>
+        </th>
+        <td>
+          <pre>    Dir.glob(all_files_wildcard).map { |pathname| File.basename pathname }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line126">126</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line127">127</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line128">128</a>
+        </th>
+        <td>
+          <pre>  def snapshot</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line129">129</a>
+        </th>
+        <td>
+          <pre>    write_manifest</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line130">130</a>
+        </th>
+        <td>
+          <pre>    copy_manifest_files_to_repository</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line131">131</a>
+        </th>
+        <td>
+          <pre>    manifest_hash = hash_and_copy_manifest</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line132">132</a>
+        </th>
+        <td>
+          <pre>    write_metadata manifest_hash</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line133">133</a>
+        </th>
+        <td>
+          <pre>    metadata_hash = hash_and_copy_metadata</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line134">134</a>
+        </th>
+        <td>
+          <pre>    update_head metadata_hash</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line135">135</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line136">136</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line137">137</a>
+        </th>
+        <td>
+          <pre>  def update_head(metadata_hash = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line138">138</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', 'HEAD'), 'w') do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line139">139</a>
+        </th>
+        <td>
+          <pre>      file.write metadata_hash</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line140">140</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line141">141</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line142">142</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line143">143</a>
+        </th>
+        <td>
+          <pre>  def verify_manifest(manifest = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line144">144</a>
+        </th>
+        <td>
+          <pre>    manifest ||= '__manifest__'</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line145">145</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', manifest)) do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line146">146</a>
+        </th>
+        <td>
+          <pre>      repo_files = repository_file_list()</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line147">147</a>
+        </th>
+        <td>
+          <pre>      file.readlines.each do |entry|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="2">
+        <th>
+          <a name="line148">148</a>
+        </th>
+        <td>
+          <pre>        return false unless repo_files.include? entry[0...40]</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line149">149</a>
+        </th>
+        <td>
+          <pre>      end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line150">150</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line151">151</a>
+        </th>
+        <td>
+          <pre>    true</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line152">152</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line153">153</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line154">154</a>
+        </th>
+        <td>
+          <pre>  def write_manifest</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line155">155</a>
+        </th>
+        <td>
+          <pre>    file_deltas = deltas</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line156">156</a>
+        </th>
+        <td>
+          <pre>    file_list   = []</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="40">
+        <th>
+          <a name="line157">157</a>
+        </th>
+        <td>
+          <pre>    file_deltas[:new].each      { |filename| file_list << "#{hash_for_file filename} => #{filename} (new)"}</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line158">158</a>
+        </th>
+        <td>
+          <pre>    file_deltas[:existing].each { |filename| file_list << "#{hash_for_file filename} => #{filename} (existing)"}</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line159">159</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', '__manifest__'), 'w') do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="40">
+        <th>
+          <a name="line160">160</a>
+        </th>
+        <td>
+          <pre>      file_list.sort!.each { |entry| file.puts entry }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line161">161</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line162">162</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line163">163</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line164">164</a>
+        </th>
+        <td>
+          <pre>  def write_metadata(manifest_hash = nil)</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line165">165</a>
+        </th>
+        <td>
+          <pre>    File.open(File.join('.esc', '__metadata__'), 'w') do |file|</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line166">166</a>
+        </th>
+        <td>
+          <pre>      file.puts "Snapshot Manifest: #{manifest_hash}"</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line167">167</a>
+        </th>
+        <td>
+          <pre>      file.puts "Snapshot Parent:   #{(head_contents.empty?) ? 'root' : head_contents}"</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="13">
+        <th>
+          <a name="line168">168</a>
+        </th>
+        <td>
+          <pre>      file.puts "Snapshot Taken:    #{Time.now}"</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line169">169</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line170">170</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line171">171</a>
+        </th>
+        <td>
+          <pre>end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line172">172</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line173">173</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line174">174</a>
+        </th>
+        <td>
+          <pre># Benchmark the cwd_hashes methods</pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line175">175</a>
+        </th>
+        <td>
+          <pre>def benchmark_cwd_hashes</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line176">176</a>
+        </th>
+        <td>
+          <pre>  repo_dir = File.join(File.dirname(__FILE__), '../', 'specs', 'test_dir')</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line177">177</a>
+        </th>
+        <td>
+          <pre>  Dir.chdir repo_dir</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line178">178</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line179">179</a>
+        </th>
+        <td>
+          <pre>  10000.times do |idx|</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line180">180</a>
+        </th>
+        <td>
+          <pre>    File.open("file_#{idx}", 'w') do |f|</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line181">181</a>
+        </th>
+        <td>
+          <pre>      f.write "I am file #{idx}"</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line182">182</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line183">183</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line184">184</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line185">185</a>
+        </th>
+        <td>
+          <pre>  csc = CustomSourceControl.new</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line186">186</a>
+        </th>
+        <td>
+          <pre>  csc.initialize_repository</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line187">187</a>
+        </th>
+        <td>
+          <pre>  csc.snapshot</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line188">188</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line189">189</a>
+        </th>
+        <td>
+          <pre>  require 'benchmark'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line190">190</a>
+        </th>
+        <td>
+          <pre>  Benchmark.bmbm do |x|</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line191">191</a>
+        </th>
+        <td>
+          <pre>    x.report("initial:")  { csc.initial_cwd_hashes }</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line192">192</a>
+        </th>
+        <td>
+          <pre>    x.report("refactor:") { csc.refactor_cwd_hashes }</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line193">193</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line194">194</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line195">195</a>
+        </th>
+        <td>
+          <pre>  if Dir.exists? '.esc'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line196">196</a>
+        </th>
+        <td>
+          <pre>    FileUtils.rm_rf '.esc'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line197">197</a>
+        </th>
+        <td>
+          <pre>    FileUtils.rm Dir.glob('file_*')</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line198">198</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line199">199</a>
+        </th>
+        <td>
+          <pre>end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line200">200</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line201">201</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="hit" data-hits="1">
+        <th>
+          <a name="line202">202</a>
+        </th>
+        <td>
+          <pre>if __FILE__ == $0</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line203">203</a>
+        </th>
+        <td>
+          <pre>  unless ['--benchmark', '--checkout', '--initialize', '--snapshot'].include? ARGV[0]</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line204">204</a>
+        </th>
+        <td>
+          <pre>    puts "#{ARGV[0]} is not a subcommand."</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line205">205</a>
+        </th>
+        <td>
+          <pre>    exit 1</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line206">206</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="empty" >
+        <th>
+          <a name="line207">207</a>
+        </th>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line208">208</a>
+        </th>
+        <td>
+          <pre>  csc = CustomSourceControl.new</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line209">209</a>
+        </th>
+        <td>
+          <pre>  case ARGV[0]</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line210">210</a>
+        </th>
+        <td>
+          <pre>  when '--benchmark'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line211">211</a>
+        </th>
+        <td>
+          <pre>    benchmark_cwd_hashes</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line212">212</a>
+        </th>
+        <td>
+          <pre>  when '--checkout'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line213">213</a>
+        </th>
+        <td>
+          <pre>    if ARGV[1]</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line214">214</a>
+        </th>
+        <td>
+          <pre>      csc.checkout ARGV[1]</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line215">215</a>
+        </th>
+        <td>
+          <pre>    else</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line216">216</a>
+        </th>
+        <td>
+          <pre>      puts "'checkout' subcommand takes a second argument, SHA1 of the metadata file to checkout."</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line217">217</a>
+        </th>
+        <td>
+          <pre>      exit 1</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line218">218</a>
+        </th>
+        <td>
+          <pre>    end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line219">219</a>
+        </th>
+        <td>
+          <pre>  when '--initialize'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line220">220</a>
+        </th>
+        <td>
+          <pre>    csc.initialize_repository</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line221">221</a>
+        </th>
+        <td>
+          <pre>  when '--snapshot'</pre>
+        </td>
+      </tr>
+                  <tr class="miss" data-hits="0">
+        <th>
+          <a name="line222">222</a>
+        </th>
+        <td>
+          <pre>    csc.snapshot</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line223">223</a>
+        </th>
+        <td>
+          <pre>  end</pre>
+        </td>
+      </tr>
+                  <tr class="never" >
+        <th>
+          <a name="line224">224</a>
+        </th>
+        <td>
+          <pre>end</pre>
+        </td>
+      </tr>
+          </table></body>
+</html>
